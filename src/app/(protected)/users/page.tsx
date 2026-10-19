@@ -28,7 +28,7 @@ export default async function Users({ searchParams }: { searchParams: Promise<{ 
           <option value="admin">Administrator</option>
         </select></label>
         <PasswordField label={editing ? 'Kata sandi baru' : 'Kata sandi awal'} required={!editing}
-          hint={editing ? 'Kosongkan jika tidak ingin mengganti kata sandi. Minimal 10 karakter.' : 'Minimal 10 karakter.'}/>
+          hint={editing ? 'Kosongkan jika tidak ingin mengganti kata sandi. Minimal 6 karakter.' : 'Minimal 6 karakter.'}/>
         <div className="form-actions"><button>{editing ? 'Simpan perubahan' : 'Buat pengguna'}</button>
           {editing && <Link className="button secondary" href="/users">Batal</Link>}
         </div>

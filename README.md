@@ -40,7 +40,7 @@ Gunakan `npm` sebagai pengganti `npm.cmd` pada Linux/macOS. File `.env.local` ti
 
 - Nonaktifkan **Allow new users to sign up**. Akun hanya dibuat oleh admin menggunakan API server. Tidak tersedia pendaftaran publik atau setup admin melalui web.
 - Login tetap menggunakan NIM/NIP. Sistem memetakan identitas huruf kecil ke alamat internal `nim@presensi.invalid` untuk Supabase Auth. Alamat tersebut bukan inbox email; reset password via email tidak tersedia. Administrator dapat mengatur password melalui skrip reset di bawah. Pengguna bisa mengganti password sendiri setelah masuk.
-- Akun awal dikonfirmasi oleh Admin API sehingga tidak memerlukan pengiriman email. Gunakan password minimal 10 karakter; atur kebijakan password dan rate limit Auth pada dashboard Supabase. Pembatasan login memakai Supabase Auth, bukan tabel `login_attempts` SQLite lama.
+- Akun awal dikonfirmasi oleh Admin API sehingga tidak memerlukan pengiriman email. Gunakan password minimal 6 karakter; atur kebijakan password dan rate limit Auth pada dashboard Supabase. Pembatasan login memakai Supabase Auth, bukan tabel `login_attempts` SQLite lama.
 - Set **Site URL** ke domain produksi Vercel. Tambahkan `http://localhost:3000` pada URL yang diizinkan untuk pengembangan bila diperlukan.
 
 ## Deploy ke Vercel
@@ -115,5 +115,6 @@ npm.cmd run build
 ```
 
 Sebelum dipakai di kampus, uji dengan proyek Supabase Anda: login setiap peran, isolasi dosen/mahasiswa, pembuatan pengguna/kelas/peserta/sesi, presensi di dalam/luar radius, GPS tidak akurat/kedaluwarsa, presensi ganda, sesi ditutup, filter WIB, Excel, dan cetak PDF. Pengujian GPS memerlukan perangkat nyata dan izin lokasi. Deployment serta koneksi proyek Supabase nyata memerlukan konfigurasi akun Anda.
-#   S i s t e m - P r e s e n s i  
+#   S i s t e m - P r e s e n s i 
+ 
  

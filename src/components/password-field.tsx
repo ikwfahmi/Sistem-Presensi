@@ -10,7 +10,7 @@ export function PasswordField({ label, name = 'password', required = false, hint
   return <div className="password-field"><label htmlFor={inputId}>{label}</label>
     <span className="password-input">
       <input id={inputId} name={name} type={visible ? 'text' : 'password'}
-        minLength={autoComplete === 'new-password' ? 10 : undefined} maxLength={autoComplete === 'new-password' ? 128 : undefined}
+        minLength={autoComplete === 'new-password' ? 6 : undefined} maxLength={autoComplete === 'new-password' ? 128 : undefined}
         required={required} autoComplete={autoComplete} aria-describedby={hint ? `${inputId}-hint` : undefined}/>
       <button type="button" className="password-toggle" aria-controls={inputId} aria-pressed={visible}
         aria-label={`${visible ? 'Sembunyikan' : 'Tampilkan'} ${label.toLowerCase()}`}

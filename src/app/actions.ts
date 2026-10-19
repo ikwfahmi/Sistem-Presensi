@@ -43,7 +43,7 @@ export async function createUser(form: FormData) {
     const identifier = field(form, 'identifier').toLowerCase();
     const email = loginEmail(identifier);
     const role = z.enum(roles).parse(field(form, 'role'));
-    const password = z.string().min(10).max(128).parse(String(form.get('password') ?? ''));
+    const password = z.string().min(6).max(128).parse(String(form.get('password') ?? ''));
     const admin = adminClient();
     const { data, error } = await admin.auth.admin.createUser({ email, password, email_confirm: true });
     if (error) throw error;
@@ -78,7 +78,7 @@ export async function updateUser(form: FormData) {
     const email = loginEmail(identifier);
     const role = z.enum(roles).parse(field(form, 'role'));
     const passwordValue = String(form.get('password') ?? '');
-    const password = passwordValue ? z.string().min(10).max(128).parse(passwordValue) : undefined;
+    const password = passwordValue ? z.string().min(6).max(128).parse(passwordValue) : undefined;
     if (userId === user.id && role !== 'admin') throw new Error('Anda tidak dapat mengubah peran akun sendiri.');
     const admin = adminClient();
     const { data: current, error } = await admin.from('profiles').select('id,role').eq('id', userId).single();
@@ -150,7 +150,7 @@ export async function closeSession(form: FormData) {
 export async function changePassword(form: FormData) {
   const { db, user } = await requireUser();
   try {
-    const password = z.string().min(10).max(128).parse(String(form.get('password') ?? ''));
+    const password = z.string().min(6).max(128).parse(String(form.get('password') ?? ''));
     const { error: verifyError } = await db.auth.signInWithPassword({ email: user.email!, password: String(form.get('old_password') ?? '') });
     if (verifyError) throw new Error('Kata sandi lama salah.');
     const { error } = await db.auth.updateUser({ password });
