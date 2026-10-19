@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT NOT NULL, identifier TEXT NOT NULL UNIQUE, password TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('admin','baak','dosen','mahasiswa')));
+        CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, name TEXT NOT NULL, lecturer_id INTEGER NOT NULL REFERENCES users(id), room TEXT NOT NULL, latitude REAL NOT NULL, longitude REAL NOT NULL, radius INTEGER NOT NULL DEFAULT 50);
+        CREATE TABLE IF NOT EXISTS enrollments(class_id INTEGER REFERENCES classes(id), student_id INTEGER REFERENCES users(id), PRIMARY KEY(class_id,student_id));
+        CREATE TABLE IF NOT EXISTS sessions(id INTEGER PRIMARY KEY, class_id INTEGER NOT NULL REFERENCES classes(id), title TEXT NOT NULL, starts_at TEXT NOT NULL, ends_at TEXT NOT NULL, closed INTEGER NOT NULL DEFAULT 0, latitude REAL NOT NULL, longitude REAL NOT NULL, radius INTEGER NOT NULL);
+        CREATE TABLE IF NOT EXISTS attendance(id INTEGER PRIMARY KEY, session_id INTEGER NOT NULL REFERENCES sessions(id), student_id INTEGER NOT NULL REFERENCES users(id), recorded_at TEXT NOT NULL, latitude REAL NOT NULL, longitude REAL NOT NULL, accuracy REAL NOT NULL, distance REAL NOT NULL, UNIQUE(session_id,student_id));
+        CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, student_id INTEGER REFERENCES users(id), session_id INTEGER, occurred_at TEXT NOT NULL, reason TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS login_attempts(id INTEGER PRIMARY KEY, identity TEXT NOT NULL, occurred_at INTEGER NOT NULL);

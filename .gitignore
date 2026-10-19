@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.vercel/
+*.tsbuildinfo
+legacy/app/config/*.sqlite*
+legacy/app/config/sess_*
+migration-data.json

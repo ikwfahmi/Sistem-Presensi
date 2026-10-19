@@ -1,0 +1,8 @@
+legacy/
+tests/
+scripts/
+verify.py
+BELAJAR_MVC.md
+TESTING.md
+migration-data.json
+.env.local
